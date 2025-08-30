@@ -11,9 +11,15 @@ export class CartPage {
         this.removeButtons = page.locator('[data-test^="remove-"]');
     }
 
+    // async openCart() {
+    //     await this.cartLink.click();
+    //     // await this.page.locator('.shopping_cart_link').click();
+    // }
     async openCart() {
-        await this.cartLink.click();
-        // await this.page.locator('.shopping_cart_link').click();
+        await Promise.all([
+            this.page.waitForURL('**/cart.html'),
+             this.cartLink.click()
+        ]);
     }
 
     async removeProduct(productName: string) {
